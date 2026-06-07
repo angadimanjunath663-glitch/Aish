@@ -255,8 +255,8 @@
 
     .hero-img {
       width: 100%;
-      max-width: 520px;
-      height: 280px;
+      max-width: 380px;
+      aspect-ratio: 2 / 3;
       object-fit: cover;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -316,7 +316,7 @@
 
     @media (max-width: 640px) {
       .card { padding: 20px; }
-      .hero-img { height: 220px; }
+      .hero-img { max-width: 280px; }
       .date-dropdowns { grid-template-columns: 1fr; }
     }
   </style>
@@ -335,7 +335,7 @@
         <span class="badge">Made with love</span>
       </div>
 
-      <h1>Today is for</h1>
+      <h1>Tonight is for</h1>
       <div class="name">Aishwarya</div>
       <p class="subtitle">
         I made this just for you — dark, dreamy, and full of love.
@@ -344,7 +344,7 @@
 
       <div class="controls">
         <div>
-          <label>Pick a special date</label>
+          <label>Pick a special date (default: today)</label>
           <div class="date-dropdowns">
             <select id="monthSelect"></select>
             <select id="daySelect"></select>
@@ -400,7 +400,6 @@
       'July', 'August', 'September', 'October', 'November', 'December'
     ];
 
-    // Populate month dropdown
     months.forEach((month, index) => {
       const opt = document.createElement('option');
       opt.textContent = month;
@@ -408,7 +407,6 @@
       monthSelect.appendChild(opt);
     });
 
-    // Populate day dropdown (1-31)
     for (let i = 1; i <= 31; i++) {
       const opt = document.createElement('option');
       opt.textContent = i;
@@ -416,7 +414,6 @@
       daySelect.appendChild(opt);
     }
 
-    // Populate year dropdown (current year ± 5 years)
     const currentYear = new Date().getFullYear();
     for (let year = currentYear - 2; year <= currentYear + 3; year++) {
       const opt = document.createElement('option');
@@ -425,7 +422,6 @@
       yearSelect.appendChild(opt);
     }
 
-    // Set default to today
     const today = new Date();
     monthSelect.value = today.getMonth();
     daySelect.value = today.getDate();
